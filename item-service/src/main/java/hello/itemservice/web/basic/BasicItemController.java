@@ -89,7 +89,14 @@ public class BasicItemController {
         redirectAttributes.addAttribute("status", true);
         return "redirect:/basic/items/{itemId}";
     }
-    
+
+    @GetMapping("/{itemId}/edit")
+    public String editForm(@PathVariable Long itemId, Model model) {
+        Item item = itemRepository.findById(itemId);
+        model.addAttribute("item", item);
+        return "basic/editForm";
+    }
+
     /**
      * 테스트용 데이터 추가
      */
